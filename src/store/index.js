@@ -2,7 +2,7 @@ import Vue from "vue";
 import Vuex from "vuex";
 import { getAuth, signInWithEmailAndPassword } from "firebase/auth";
 import { db } from "@/helper/firebase";
-import { collection, getDocs } from "firebase/firestore";
+import { collection, getDocs, doc, setDoc } from "firebase/firestore";
 import router from "@/router";
 
 Vue.use(Vuex);
@@ -88,7 +88,14 @@ export default new Vuex.Store({
     async getCurso({ commit }) {
       try {
         const request = await getDocs(collection(db, "cursoalfaweb"));
-        const data = request.docs.map((doc) => doc.data());
+        const data = request.docs.map((doc) => {
+          console.log(doc.id);
+          const onject = {
+            ...doc.data(),
+            idFirebase: doc.id,
+          };
+          return onject;
+        });
         console.log(data);
         commit("SET_DATA_CURSOS", data);
       } catch (error) {
@@ -97,6 +104,11 @@ export default new Vuex.Store({
     },
     async updateCurso({ state }) {
       const curso = state.editCurso;
+      try {
+        await setDoc(doc(db, "cursoalfaweb", curso.idFirebase), curso);
+      } catch (error) {
+        console.error(error);
+      }
       console.log("updateCurso", curso);
     },
   },
