@@ -28,7 +28,7 @@
         </b-form>
 
         <h2 class="mt-2">contraseña:123456</h2>
-        <h3 class="mt-2">correo:victorhfp2014@gmail.com</h3>
+        <h3 class="mt-2">correo:pepito@gmail.com</h3>
       </b-col>
     </b-row>
   </b-container>
