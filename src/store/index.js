@@ -2,7 +2,13 @@ import Vue from "vue";
 import Vuex from "vuex";
 import { getAuth, signInWithEmailAndPassword } from "firebase/auth";
 import { db } from "@/helper/firebase";
-import { collection, getDocs, doc, setDoc } from "firebase/firestore";
+import {
+  collection,
+  getDocs,
+  doc,
+  //setDoc,
+  updateDoc,
+} from "firebase/firestore";
 import router from "@/router";
 
 Vue.use(Vuex);
@@ -14,9 +20,9 @@ export default new Vuex.Store({
     editCurso: {},
   },
   getters: {
-    getCursoFiltered: (state) => (payload) => {
-      return state.cursos.find((fil) => fil.codigo === payload);
-    },
+    // getCursoFiltered: (state) => (payload) => {
+    //   return state.cursos.find((fil) => fil.codigo === payload);
+    // },
   },
   mutations: {
     SET_IS_AUTH(state, payload) {
@@ -39,7 +45,7 @@ export default new Vuex.Store({
       state.editCurso.cupos = payload;
     },
     SET_EDIT_CURSO_INSCRITOS(state, payload) {
-      state.editCurso.codigo = payload;
+      state.editCurso.inscritos = payload;
     },
     SET_EDIT_CURSO_DURACION(state, payload) {
       state.editCurso.duracion = payload;
@@ -90,11 +96,11 @@ export default new Vuex.Store({
         const request = await getDocs(collection(db, "cursoalfaweb"));
         const data = request.docs.map((doc) => {
           console.log(doc.id);
-          const onject = {
+          const object = {
             ...doc.data(),
             idFirebase: doc.id,
           };
-          return onject;
+          return object;
         });
         console.log(data);
         commit("SET_DATA_CURSOS", data);
@@ -104,8 +110,12 @@ export default new Vuex.Store({
     },
     async updateCurso({ state }) {
       const curso = state.editCurso;
+      const idFirebase = curso.idFirebase;
+      delete curso.idFirebase;
       try {
-        await setDoc(doc(db, "cursoalfaweb", curso.idFirebase), curso);
+        const actulizar = doc(db, "cursoalfaweb", idFirebase);
+        // await setDoc(doc(db, "cursoalfaweb", curso.idFirebase), curso);
+        await updateDoc(actulizar, curso);
       } catch (error) {
         console.error(error);
       }

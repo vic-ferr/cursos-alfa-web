@@ -92,6 +92,7 @@ import { mapState, mapMutations, mapActions } from "vuex";
 export default {
   name: "EditView",
   methods: {
+    ...mapActions(["updateCurso"]),
     ...mapMutations([
       "SET_EDIT_CURSO",
       "SET_EDIT_CURSO_NOMBRE",
@@ -103,7 +104,6 @@ export default {
       "SET_EDIT_CURSO_CODIGO",
       "SET_EDIT_CURSO_DESCRIPCION",
     ]),
-    ...mapActions(["updateCurso"]),
   },
   computed: {
     ...mapState(["editCurso"]),
@@ -112,7 +112,7 @@ export default {
         return this.editCurso.nombre;
       },
       set(value) {
-        this.SET_EDIT_NOMBRE(value);
+        this.SET_EDIT_CURSO_NOMBRE(value);
       },
     },
     imagen: {
@@ -120,7 +120,7 @@ export default {
         return this.editCurso.imagen;
       },
       set(value) {
-        this.SET_EDIT_IMAGEN(value);
+        this.SET_EDIT_CURSO_IMAGEN(value);
       },
     },
     cupos: {
@@ -128,7 +128,7 @@ export default {
         return this.editCurso.cupos;
       },
       set(value) {
-        this.SET_EDIT_CUPOS(value);
+        this.SET_EDIT_CURSO_CUPOS(value);
       },
     },
     inscritos: {
@@ -136,7 +136,7 @@ export default {
         return this.editCurso.inscritos;
       },
       set(value) {
-        this.SET_EDIT_INSCRITOS(value);
+        this.SET_EDIT_CURSO_INSCRITOS(value);
       },
     },
     duracion: {
@@ -144,7 +144,7 @@ export default {
         return this.editCurso.duracion;
       },
       set(value) {
-        this.SET_EDIT_DURACION(value);
+        this.SET_EDIT_CURSO_DURACION(value);
       },
     },
     costo: {
@@ -152,7 +152,7 @@ export default {
         return this.editCurso.costo;
       },
       set(value) {
-        this.SET_EDIT_COSTO(value);
+        this.SET_EDIT_CURSO_COSTO(value);
       },
     },
     codigo: {
@@ -160,7 +160,7 @@ export default {
         return this.editCurso.codigo;
       },
       set(value) {
-        this.SET_EDIT_CODIGO(value);
+        this.SET_EDIT_CURSO_CODIGO(value);
       },
     },
     descripcion: {
@@ -168,7 +168,7 @@ export default {
         return this.editCurso.descripcion;
       },
       set(value) {
-        this.SET_EDIT_DESCRIPCION(value);
+        this.SET_EDIT_CURSO_DESCRIPCION(value);
       },
     },
   },
