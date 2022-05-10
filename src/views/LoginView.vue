@@ -2,7 +2,7 @@
   <b-container>
     <b-row>
       <b-col cols="12">
-        <h1 clas="display-4">Iniciar secion</h1>
+        <h1 clas="display-4">Iniciar sesion</h1>
         <b-form inline>
           <label class="sr-only" for="inline-form-input-username">Correo</label>
           <b-input-group prepend="@" class="mb-2 mr-sm-2 mb-sm-0">
@@ -23,7 +23,7 @@
           ></b-form-input>
 
           <b-button class="mt-2" @click="login" variant="primary"
-            >iniciar secion</b-button
+            >iniciar sesion</b-button
           >
         </b-form>
 

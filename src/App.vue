@@ -17,7 +17,9 @@
             <router-link class="m-2" to="/administracion"
               >administration</router-link
             >
-            <router-link class="m-2" to="/registration">restration</router-link>
+            <router-link class="m-2" to="/registration"
+              >registration</router-link
+            >
             <template v-if="!isAuthh">
               <router-link class="m-2" to="/login">login</router-link>
             </template>
